@@ -1,0 +1,47 @@
+<div class="card mt-3">
+  <div class="card-header">
+    <div class="float-left">
+      <h3>Listagem de candidatos</h3>
+    </div>
+    <div class="float-right">
+      <button type="button" class="btn btn-success" (click)="onCreate()">Cadastrar</button>
+
+      <button type="button" class="btn btn-primary" (click)="onRefresh()" style="margin-left: 10px;">Atualizar</button>
+      <button type="button" class="btn btn-danger" (click)="onDisconect()" style="margin-left: 10px;">Sair</button>
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="table table-hover" *ngIf="candidatos$ | async as candidatos; else loading">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>E-mail</th>
+          <th>Telefone</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let candidato of candidatos">
+          <td>{{ candidato.full_name }}</td>
+          <td>{{ candidato.email }}</td>
+          <td>{{ candidato.phone }}</td>
+          <td>
+            <span class="float-right">
+              <button class="btn btn-outline-warning mb-1 btn-sm" (click)="onUpdate(candidato.id)">
+                Editar
+              </button>
+
+              <button class="btn btn-outline-danger mb-1 btn-sm" (click)="onDelete(candidato.id)" style="margin-left: 10px;">
+                Remover
+              </button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #loading>
+      <span>Carregando Cursos...</span>
+    </ng-template>
+  </div>
+</div>

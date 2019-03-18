@@ -1,0 +1,88 @@
+<div class="card mt-3">
+  <div class="card-header">
+    <div class="float-left">
+      <h3>{{ this.formularioNome }} de candidato</h3>
+    </div>
+    <div class="float-right">
+      <button type="button" class="btn btn-danger" (click)="onDisconect()" style="margin-left: 10px;">Sair</button>
+    </div>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="form" class="needs-validation">
+      <div class="form-group">
+        <label for="full_name">*Nome Completo</label>
+        <input type="text" class="form-control" id="full_name" placeholder="Nome Completo" name="full_name"
+          formControlName="full_name" maxlength="50">
+        <div *ngIf="!form.get('full_name').valid && (form.get('full_name').dirty || form.get('full_name').touched)"
+          class="alert alert-danger">
+          <div *ngIf="form.get('full_name').errors.required">
+            Nome completo é obrigatório.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="cpf">CPF</label>
+        <input type="text" class="form-control" id="cpf" placeholder="CPF" name="cpf" formControlName="cpf" maxlength="15">
+      </div>
+
+      <div class="form-group">
+        <label for="rg">RG</label>
+        <input type="text" class="form-control" id="rg" placeholder="RG" name="rg" formControlName="rg" maxlength="11">
+      </div>
+
+      <div class="form-group">
+        <label for="dtNascimento">Data de Nascimento</label>
+        <input type="date" class="form-control" id="dtNascimento" name="dtNascimento" formControlName="birth_date">
+      </div>
+
+      <div class="form-group">
+        <label for="telefone">Telefone</label>
+        <input type="text" class="form-control" id="telefone" placeholder="Telefone" name="telefone" formControlName="phone"
+          maxlength="50" data-mask="(00) 0 0000-0000">
+      </div>
+
+      <div class="form-group">
+        <label for="username">*Nome de Usuário</label>
+        <input type="text" class="form-control" id="username" placeholder="Nome de Usuário" name="username" maxlength="255"
+          formControlName="username">
+        <div *ngIf="!form.get('username').valid && (form.get('username').dirty || form.get('username').touched)" class="alert alert-danger">
+          <div *ngIf="form.get('username').errors.required">
+            Username é obrigatório.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">*E-mail</label>
+        <input type="email" class="form-control" id="email" placeholder="E-mail" name="email" formControlName="email"
+          required maxlength="254">
+        <div *ngIf="!form.get('email').valid && (form.get('email').dirty || form.get('email').touched)" class="alert alert-danger">
+          <div *ngIf="form.get('email').errors.required">
+            E-mail é obrigatório.
+          </div>
+          <div *ngIf="form.get('email').errors.pattern">
+            E-mail inválido.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">*Senha</label>
+        <div>
+          <input type="password" class="form-control" id="password" placeholder="Senha" name="password" formControlName="password"
+            required maxlength="128">
+          <div *ngIf="!form.get('password').valid && (form.get('password').dirty || form.get('password').touched)"
+            class="alert alert-danger">
+            <div *ngIf="form.get('password').errors.required">
+              Senha é obrigatória.
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success" (click)="onSubmit()">Submeter</button>
+      <button type="cancel" class="btn btn-primary" (click)="onClear()" style="margin-left: 10px;">Limpar</button>
+      <button type="cancel" class="btn btn-danger" (click)="onCancel()" style="margin-left: 10px;">Cancelar</button>
+    </form>
+  </div>
+</div>
